@@ -1,12 +1,9 @@
 import unittest
+
 import pytest
-from exchange import (
-    exchange_money,
-    get_change,
-    get_value_of_bills,
-    get_number_of_bills,
-    get_leftover_of_bills,
-    exchangeable_value)
+from exchange import (exchange_money, exchangeable_value, get_change,
+                      get_leftover_of_bills, get_number_of_bills,
+                      get_value_of_bills)
 
 
 class CurrencyExchangeTest(unittest.TestCase):
