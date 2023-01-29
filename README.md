@@ -1,2 +1,3 @@
 # python
- Repositorio destinado a resolução de exercicios proprostos pelo site  https://exercism.org
+ Repositório destinado a resolução de exercícios propostos pelo site:
+ https://exercism.org
