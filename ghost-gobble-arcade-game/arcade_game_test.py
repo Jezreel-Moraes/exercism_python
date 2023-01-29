@@ -1,6 +1,7 @@
 import unittest
+
 import pytest
-from arcade_game import eat_ghost, score, lose, win
+from arcade_game import eat_ghost, lose, score, win
 
 
 class GhostGobbleGameTest(unittest.TestCase):
@@ -32,9 +33,9 @@ class GhostGobbleGameTest(unittest.TestCase):
     @pytest.mark.task(taskno=2)
     def test_score_when_eating_dot(self):
         self.assertIs(
-          score(False, True),
-          True,
-          msg="score when eating dot"
+            score(False, True),
+            True,
+            msg="score when eating dot"
         )
 
     @pytest.mark.task(taskno=2)

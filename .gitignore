@@ -1,7 +1,7 @@
 #local
-.\.mypy_cache
-.\.pytest_cache
-.\exercism
+.mypy_cache/
+.pytest_cache/
+exercism/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
