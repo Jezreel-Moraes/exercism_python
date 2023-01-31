@@ -1,8 +1,7 @@
 import unittest
+
 import pytest
-from conditionals import (is_criticality_balanced,
-                          reactor_efficiency,
-                          fail_safe)
+from conditionals import fail_safe, is_criticality_balanced, reactor_efficiency
 
 
 class MeltdownMitigationTest(unittest.TestCase):
@@ -19,9 +18,12 @@ class MeltdownMitigationTest(unittest.TestCase):
 
         test_data = ((750, 650, True), (799, 501, True), (500, 600, True),
                      (1000, 800, False), (800, 500, False), (800, 500.01, False),
-                     (799.99, 500, False), (500.01, 999.99, False), (625, 800, False),
-                     (625.99, 800, False), (625.01, 799.99, False), (799.99, 500.01, True),
-                     (624.99, 799.99, True), (500, 1000, False), (500.01, 1000, False),
+                     (799.99, 500, False), (500.01,
+                                            999.99, False), (625, 800, False),
+                     (625.99, 800, False), (625.01, 799.99,
+                                            False), (799.99, 500.01, True),
+                     (624.99, 799.99, True), (500, 1000,
+                                              False), (500.01, 1000, False),
                      (499.99, 1000, True))
 
         for variant, data in enumerate(test_data, start=1):
@@ -51,7 +53,8 @@ class MeltdownMitigationTest(unittest.TestCase):
                               theoretical_max_power=theoretical_max_power, expected=expected):
 
                 # pylint: disable=assignment-from-no-return
-                actual_result = reactor_efficiency(voltage, current, theoretical_max_power)
+                actual_result = reactor_efficiency(
+                    voltage, current, theoretical_max_power)
                 failure_message = (f'Expected {expected} but returned {actual_result} '
                                    f'with voltage={voltage}, current={current}, max_pow={theoretical_max_power}')
                 self.assertEqual(actual_result, expected, failure_message)

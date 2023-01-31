@@ -1,28 +1,39 @@
 """Functions to prevent a nuclear meltdown."""
 
 
-def is_criticality_balanced(temperature, neutrons_emitted):
+def is_criticality_balanced(temperature: int, neutrons_emitted: int) -> bool:
     """Verify criticality is balanced.
 
     :param temperature: int or float - temperature value in kelvin.
-    :param neutrons_emitted: int or float - number of neutrons emitted per second.
+    :param neutrons_emitted: int or float - number of neutrons emitted per
+    second.
     :return: bool - is criticality balanced?
 
     A reactor is said to be critical if it satisfies the following conditions:
     - The temperature is less than 800 K.
     - The number of neutrons emitted per second is greater than 500.
-    - The product of temperature and neutrons emitted per second is less than 500000.
+    - The product of temperature and neutrons emitted per second is less than
+    500000.
     """
 
-    pass
+    return not any([
+        temperature >= 800,
+        neutrons_emitted <= 500,
+        temperature * neutrons_emitted >= 500000
+    ])
 
 
-def reactor_efficiency(voltage, current, theoretical_max_power):
+def reactor_efficiency(
+    voltage: int,
+    current: int,
+    theoretical_max_power: int
+) -> str:
     """Assess reactor efficiency zone.
 
     :param voltage: int or float - voltage value.
     :param current: int or float - current value.
-    :param theoretical_max_power: int or float - power that corresponds to a 100% efficiency.
+    :param theoretical_max_power: int or float - power that corresponds to a
+    100% efficiency.
     :return: str - one of ('green', 'orange', 'red', or 'black').
 
     Efficiency can be grouped into 4 bands:
@@ -36,11 +47,22 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     (generated power/ theoretical max power)*100
     where generated power = voltage * current
     """
+    generated_power = voltage * current
+    efficiency = (generated_power/theoretical_max_power) * 100
+    efficiency_state = (
+        'green' if efficiency >= 80 else
+        'orange' if efficiency >= 60 else
+        'red' if efficiency >= 30 else 'black'
+    )
 
-    pass
+    return efficiency_state
 
 
-def fail_safe(temperature, neutrons_produced_per_second, threshold):
+def fail_safe(
+    temperature: int,
+    neutrons_produced_per_second: int,
+    threshold: int
+) -> str:
     """Assess and return status code for the reactor.
 
     :param temperature: int or float - value of the temperature in kelvin.
@@ -50,7 +72,14 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
 
     1. 'LOW' -> `temperature * neutrons per second` < 90% of `threshold`
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
-    3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
+    3. 'DANGER' -> `temperature * neutrons per second` is not in the
+    above-stated ranges
     """
 
-    pass
+    temperature_times_neutrons = temperature * neutrons_produced_per_second
+    threshold_percent = (temperature_times_neutrons / threshold) * 100
+    status_code = (
+        'LOW' if threshold_percent < 90 else
+        'NORMAL' if 110 >= threshold_percent >= 90 else 'DANGER'
+    )
+    return status_code
