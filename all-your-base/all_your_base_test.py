@@ -1,8 +1,6 @@
 import unittest
 
-from all_your_base import (
-    rebase,
-)
+from all_your_base import rebase
 
 # Tests adapted from `problem-specifications//canonical-data.json`
 
@@ -67,7 +65,8 @@ class AllYourBaseTest(unittest.TestCase):
             rebase(2, [1, -1, 1, 0, 1, 0], 10)
         self.assertEqual(type(err.exception), ValueError)
         self.assertEqual(
-            err.exception.args[0], "all digits must satisfy 0 <= d < input base"
+            err.exception.args[0],
+            "all digits must satisfy 0 <= d < input base"
         )
 
     def test_invalid_positive_digit(self):
@@ -75,7 +74,8 @@ class AllYourBaseTest(unittest.TestCase):
             rebase(2, [1, 2, 1, 0, 1, 0], 10)
         self.assertEqual(type(err.exception), ValueError)
         self.assertEqual(
-            err.exception.args[0], "all digits must satisfy 0 <= d < input base"
+            err.exception.args[0],
+            "all digits must satisfy 0 <= d < input base"
         )
 
     def test_output_base_is_one(self):
