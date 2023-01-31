@@ -74,6 +74,7 @@ def fail_safe(
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
     3. 'DANGER' -> `temperature * neutrons per second` is not in the
     above-stated ranges
+
     """
 
     temperature_times_neutrons = temperature * neutrons_produced_per_second
