@@ -1,8 +1,6 @@
 import unittest
 
-from collatz_conjecture import (
-    steps,
-)
+from collatz_conjecture import steps
 
 # Tests adapted from `problem-specifications//canonical-data.json`
 
@@ -24,10 +22,12 @@ class CollatzConjectureTest(unittest.TestCase):
         with self.assertRaises(ValueError) as err:
             steps(0)
         self.assertEqual(type(err.exception), ValueError)
-        self.assertEqual(err.exception.args[0], "Only positive integers are allowed")
+        self.assertEqual(
+            err.exception.args[0], "Only positive integers are allowed")
 
     def test_negative_value_is_an_error(self):
         with self.assertRaises(ValueError) as err:
             steps(-15)
         self.assertEqual(type(err.exception), ValueError)
-        self.assertEqual(err.exception.args[0], "Only positive integers are allowed")
+        self.assertEqual(
+            err.exception.args[0], "Only positive integers are allowed")
