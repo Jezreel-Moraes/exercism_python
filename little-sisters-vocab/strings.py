@@ -1,18 +1,18 @@
 """Functions for creating, transforming, and adding prefixes to strings."""
 
 
-def add_prefix_un(word):
+def add_prefix_un(word: str) -> str:
     """Take the given word and add the 'un' prefix.
 
     :param word: str - containing the root word.
     :return: str - of root word prepended with 'un'.
     """
+    return 'un' + word
 
-    pass
 
-
-def make_word_groups(vocab_words):
-    """Transform a list containing a prefix and words into a string with the prefix followed by the words with prefix prepended.
+def make_word_groups(vocab_words: list[str]) -> str:
+    """Transform a list containing a prefix and words into a string with
+    prefix followed by the words with prefix prepended.
 
     :param vocab_words: list - of vocabulary words with prefix in first index.
     :return: str - of prefix followed by vocabulary words with
@@ -25,11 +25,11 @@ def make_word_groups(vocab_words):
     For example: list('en', 'close', 'joy', 'lighten'),
     produces the following string: 'en :: enclose :: enjoy :: enlighten'.
     """
+    prefix = vocab_words[0]
+    return f' :: {prefix}'.join(vocab_words)
 
-    pass
 
-
-def remove_suffix_ness(word):
+def remove_suffix_ness(word: str) -> str:
     """Remove the suffix from the word while keeping spelling in mind.
 
     :param word: str - of word to remove suffix from.
@@ -37,11 +37,12 @@ def remove_suffix_ness(word):
 
     For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
     """
+    word = word.replace('ness', '')
+    word = word if word[-1] != 'i' else word[:-1] + 'y'
+    return word
 
-    pass
 
-
-def adjective_to_verb(sentence, index):
+def adjective_to_verb(sentence: str, index: int) -> str:
     """Change the adjective within the sentence to a verb.
 
     :param sentence: str - that uses the word in sentence.
@@ -51,4 +52,5 @@ def adjective_to_verb(sentence, index):
     For example, ("It got dark as the sun set", 2) becomes "darken".
     """
 
-    pass
+    new_sentence = sentence.split()
+    return new_sentence[index].strip('.') + 'en'
